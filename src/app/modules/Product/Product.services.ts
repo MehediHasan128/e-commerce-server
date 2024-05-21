@@ -21,9 +21,15 @@ const updateProduct = async(id: string, updatedData: Partial<Product>) =>{
     return result
 }
 
+const deleteProductFromDB = async(id: string) =>{
+    const result = ProductModel.deleteOne({_id: id});
+    return result;
+}
+
 export const ProductServices = {
     createProductIntoDB,
     getAllProductFromDB,
     getProductByID,
-    updateProduct
+    updateProduct,
+    deleteProductFromDB
 }

@@ -57,8 +57,30 @@ const getSpecificProduct = async(req : Request, res : Response) =>{
     }
 }
 
+const updateProductById = async(req : Request, res : Response) =>{
+    try{
+        const id = req.params.productId;
+    const {Product: updateData} = req.body;
+    const result = await ProductServices.updateProduct(id, updateData)
+
+    res.status(200).json({
+        success: true,
+        message: 'Product updated successfully!',
+        data: result
+    })
+
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Something Wrong',
+            error
+        })
+    }
+}
+
 export const ProductController = {
     createProduct,
     getAllProduct,
-    getSpecificProduct
+    getSpecificProduct,
+    updateProductById
 }

@@ -16,8 +16,14 @@ const getProductByID = async(id: string) =>{
     return result;
 }
 
+const updateProduct = async(id: string, updatedData: Partial<Product>) =>{
+    const result = await ProductModel.updateOne({_id: id, $set: updatedData, new: true});
+    return result
+}
+
 export const ProductServices = {
     createProductIntoDB,
     getAllProductFromDB,
-    getProductByID
+    getProductByID,
+    updateProduct
 }

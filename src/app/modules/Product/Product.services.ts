@@ -6,8 +6,17 @@ const createProductIntoDB = async(product: Product) =>{
     return result;
 }
 
-const getAllProductFromDB = async() =>{
-    const result = ProductModel.find();
+const getAllProductFromDB = async(searchValue: string) =>{
+
+    const query = searchValue ? {
+        $or : [
+            { name: { $regex: searchValue , $options: 'i'} },
+            { description: { $regex: searchValue , $options: 'i'} },
+            { category: { $regex: searchValue , $options: 'i'} }
+        ]
+    } : {}
+
+    const result = await ProductModel.find(query);
     return result;
 }
 
@@ -18,7 +27,7 @@ const getProductByID = async(id: string) =>{
 
 const updateProduct = async(id: string, updatedData: Partial<Product>) =>{
     const result = await ProductModel.updateOne({_id: id, $set: updatedData, new: true});
-    return result
+    return result;
 }
 
 const deleteProductFromDB = async(id: string) =>{

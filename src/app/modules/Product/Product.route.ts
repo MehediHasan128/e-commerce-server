@@ -7,6 +7,5 @@ route.post('/', ProductController.createProduct)
 route.get('/', ProductController.getAllProduct)
 route.get('/:productId', ProductController.getSpecificProduct)
 route.put('/:productId', ProductController.updateProductById)
-route.delete('/:productId', ProductController.deleteProduct)
 
 export const ProductRoutes = route;

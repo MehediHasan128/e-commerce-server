@@ -6,6 +6,7 @@ const route = express.Router();
 
 
 route.post('/', OrderController.CreateOrder)
+route.get('/', OrderController.getAllOrder)
 
 
 export const OrderRoute = route;

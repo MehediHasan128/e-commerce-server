@@ -28,7 +28,7 @@ const getProductByID = async (id: string) => {
 
 const updateProduct = async (id: string, updatedData: Partial<Product>) => {
   const result = await ProductModel.updateOne({
-    _id: id,
+    id: id,
     $set: updatedData,
     new: true,
   });

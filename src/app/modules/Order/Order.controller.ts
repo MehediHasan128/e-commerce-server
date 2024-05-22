@@ -6,7 +6,7 @@ const CreateOrder = async (req: Request, res: Response) => {
   try {
     const { Order } = req.body;
 
-    const zodParseOrder = await OrderValidationSchema.parse(Order)
+    const zodParseOrder = await OrderValidationSchema.parse(Order);
 
     const data = await OrderService.CreateOrderIntoDB(zodParseOrder);
 

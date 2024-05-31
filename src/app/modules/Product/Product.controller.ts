@@ -4,7 +4,7 @@ import ProductValidationSchema from './Product.validation';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const { Product: productData } = req.body;
+    const productData  = req.body;
 
     const zodParseProduct = ProductValidationSchema.parse(productData);
 
@@ -69,7 +69,7 @@ const getSpecificProduct = async (req: Request, res: Response) => {
 const updateProductById = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
-    const { Product: updateData } = req.body;
+    const updateData = req.body;
     const result = await ProductServices.updateProduct(id, updateData);
 
     res.status(200).json({
@@ -86,7 +86,7 @@ const updateProductById = async (req: Request, res: Response) => {
   }
 };
 
-const deleteProduct = async (req: Request, res: Response) => {
+const deleteProductFromDB = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const result = await ProductServices.deleteProductFromDB(id);
@@ -110,5 +110,5 @@ export const ProductController = {
   getAllProduct,
   getSpecificProduct,
   updateProductById,
-  deleteProduct,
+  deleteProductFromDB,
 };
